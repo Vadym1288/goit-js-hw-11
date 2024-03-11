@@ -28,7 +28,10 @@ function showMessageError(textMes) {
     }); 
 }
 
-function showGallery(tagImage) {
+
+function showGallery(event){
+    event.preventDefault()
+    const tagImage = event.target.elements.search.value;
    if (tagImage) {
        form.reset();
        gallery.innerHTML = '';
@@ -48,9 +51,4 @@ function showGallery(tagImage) {
             .finally(() => loader.style.display = 'none');
     } 
 }
-
-form.addEventListener('submit', event => {
-    event.preventDefault();
-    const tagImage = event.target.elements.search.value;
-    showGallery(tagImage);
-})
+form.addEventListener('submit', showGallery);
